@@ -61,8 +61,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     sock = socket(AF_INET, SOCK_DGRAM, 0)
     guard sock >= 0 else {
       fputs("Failed to create socket\n", stderr)
-      exit(1)
+      NSApplication.shared.terminate(nil)
+      return
     }
+
+    var reuse: Int32 = 1
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &reuse, socklen_t(MemoryLayout<Int32>.size))
 
     var addr = sockaddr_in()
     addr.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
@@ -78,7 +82,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     guard bindResult == 0 else {
       fputs("Failed to bind to port \(port): \(String(cString: strerror(errno)))\n", stderr)
       close(sock)
-      exit(1)
+      NSApplication.shared.terminate(nil)
+      return
     }
 
     let source = DispatchSource.makeReadSource(fileDescriptor: sock, queue: .main)
@@ -99,6 +104,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private func handleUDPData() {
     var buffer = [UInt8](repeating: 0, count: 256)
     let bytesRead = recv(sock, &buffer, buffer.count, 0)
+    if bytesRead < 0 {
+      fputs("recv error: \(String(cString: strerror(errno)))\n", stderr)
+      return
+    }
     guard bytesRead > 0 else { return }
 
     let command =

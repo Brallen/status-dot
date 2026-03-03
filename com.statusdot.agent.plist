@@ -16,9 +16,9 @@
         <true/>
     </dict>
     <key>StandardOutPath</key>
-    <string>/tmp/status-dot-daemon.log</string>
+    <string>__LOG_PATH__</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/status-dot-daemon.log</string>
+    <string>__LOG_PATH__</string>
     <key>ProcessType</key>
     <string>Interactive</string>
 </dict>

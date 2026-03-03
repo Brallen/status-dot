@@ -1,8 +1,6 @@
 import AppKit
 import Darwin
 
-// MARK: - Configuration
-
 let port: UInt16 = {
   if let env = ProcessInfo.processInfo.environment["STATUS_DOT_PORT"],
     let p = UInt16(env)
@@ -11,8 +9,6 @@ let port: UInt16 = {
   }
   return 33192
 }()
-
-// MARK: - App Delegate
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   private var statusItem: NSStatusItem!
@@ -23,8 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     setupStatusItem()
     setupUDPListener()
   }
-
-  // MARK: Status Item
 
   private func setupStatusItem() {
     statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -62,8 +56,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @objc private func quitApp() {
     NSApplication.shared.terminate(nil)
   }
-
-  // MARK: UDP Listener
 
   private func setupUDPListener() {
     sock = socket(AF_INET, SOCK_DGRAM, 0)
@@ -132,8 +124,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     udpSource?.cancel()
   }
 }
-
-// MARK: - Main
 
 let app = NSApplication.shared
 app.setActivationPolicy(.accessory)

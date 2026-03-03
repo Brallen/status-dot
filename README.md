@@ -1,3 +1,5 @@
+## What is this? ![2026-03-02 18 00 19](https://github.com/user-attachments/assets/5bbb3ea3-cefb-4c3b-aa9c-6ebacca61962)
+
 This is a simple program that when running `status-dot show` in a command line puts a little dot in the menu bar in MacOS.
 
 I did this so I could have an easy way to see if claude code needed attnetion but wasn't as distracting as a noise or system notification. 

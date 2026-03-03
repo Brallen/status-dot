@@ -7,9 +7,13 @@ This is a simple program that puts a dot in the MacOS menu bar when running `sta
 I did this so I could have an easy way to see if claude code needed attention but wasn't as distracting as a noise or system notification. 
 
 The available commands:
+
 `status-dot show`: Show the dot
+
 `status-dot hide`: Hide the dot
+
 `status-dot toggle`: Flip the state of the dot
+
 `status-dot quit`: Quit the application
 
 I added the following snippet to my `~/.claude/settings.json` to toggle the dot. I had to call `hide` in a lot of places so that the dot would be gone when I wanted it to be. Still doing some optimizations here.

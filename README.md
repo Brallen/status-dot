@@ -2,9 +2,9 @@
 
 ## What is this?
 
-This is a simple program that when running `status-dot show` in a command line puts a little dot in the menu bar in MacOS.
+This is a simple program that puts a dot in the MacOS menu bar when running `status-dot show` in a command line.
 
-I did this so I could have an easy way to see if claude code needed attnetion but wasn't as distracting as a noise or system notification. 
+I did this so I could have an easy way to see if claude code needed attention but wasn't as distracting as a noise or system notification. 
 
 The available commands:
 `status-dot show`: Show the dot
